@@ -1,10 +1,10 @@
-import {App, Plugin, WorkspaceLeaf} from 'obsidian';
+import {App, Plugin} from 'obsidian';
 import WorkoutSettingsTab, {DEFAULT_SETTINGS} from "./src/settings/settings";
 import {addWorkout} from "./src/addWorkout/addWorkout";
 import {WorkoutTrackerSettings} from "./src/settings/settings.types";
-import {createContext} from "node:vm";
+import React from "react";
 
-export const AppContext = createContext<App | undefined>(undefined);
+export const AppContext = React.createContext<App | null>(null);
 export default class WorkoutTrackerPlugin extends Plugin {
 	settings: WorkoutTrackerSettings;
 
