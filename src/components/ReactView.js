@@ -1,4 +1,0 @@
-export const ReactView = () => {
-    return React.createElement("h4", null, "Hello, React!");
-};
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUmVhY3RWaWV3LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiUmVhY3RWaWV3LnRzeCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxNQUFNLENBQUMsTUFBTSxTQUFTLEdBQUcsR0FBRyxFQUFFO0lBQzdCLE9BQU8sZ0RBQXNCLENBQUM7QUFDL0IsQ0FBQyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNvbnN0IFJlYWN0VmlldyA9ICgpID0+IHtcblx0cmV0dXJuIDxoND5IZWxsbywgUmVhY3QhPC9oND47XG59O1xuIl19

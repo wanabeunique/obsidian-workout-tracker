@@ -1,8 +1,49 @@
-.flex-col{
+.flex-col {
 	display: flex;
 	flex-direction: column;
 }
 
-.gap-1{
+.flex {
+	display: flex;
+}
+
+.align-center {
+	align-items: center;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.gap-1 {
 	gap: 1em;
+}
+
+.mt-1 {
+	margin-top: 1em;
+}
+
+.mt-2 {
+	margin-top: 2em;
+}
+
+.mt-3 {
+	margin-top: 3em;
+}
+
+body .custom-select__control, body .custom-select__option, body .custom-select__menu{
+	-webkit-app-region: no-drag;
+	background: var(--background-modifier-form-field);
+	border: var(--input-border-width) solid var(--background-modifier-border);
+	color: var(--text-normal);
+	font-family: inherit;
+	padding: var(--size-4-1) var(--size-4-2);
+	font-size: var(--font-ui-small);
+	border-radius: var(--input-radius);
+	outline: none;
+}
+
+body .custom-select__single-value{
+	color: var(--text-normal);
+	font-size: var(--font-ui-small);
 }

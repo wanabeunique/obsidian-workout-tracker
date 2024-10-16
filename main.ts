@@ -1,5 +1,5 @@
 import {App, Plugin} from 'obsidian';
-import WorkoutSettingsTab, {DEFAULT_SETTINGS} from "./src/settings/settings";
+import BaseSettingsTab, {DEFAULT_SETTINGS} from "./src/settings/BaseSettingsTab";
 import {addWorkout} from "./src/addWorkout/addWorkout";
 import {WorkoutTrackerSettings} from "./src/settings/settings.types";
 import React from "react";
@@ -12,10 +12,10 @@ export default class WorkoutTrackerPlugin extends Plugin {
 		await this.loadSettings();
 
 		this.addRibbonIcon('dumbbell', 'Add workout', () => {
-			new addWorkout(this.app).open()
+			new addWorkout(this.app, this.settings).open()
 		});
 
-		this.addSettingTab(new WorkoutSettingsTab(this.app, this));
+		this.addSettingTab(new BaseSettingsTab(this.app, this));
 	}
 
 	onunload() {

@@ -1,7 +1,11 @@
 export interface WorkoutTrackerSettings {
-	exercisesFolder: string,
 	workoutsFolder: string,
 	additionalExerciseParams: AdditionalExerciseParam[]
+	muscleGroups: string[]
+	exercises: [{
+		name: string
+		muscleGroup: string
+	}]
 }
 
 export interface AdditionalExerciseParam {
