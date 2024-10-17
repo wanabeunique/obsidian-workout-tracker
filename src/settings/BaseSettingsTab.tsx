@@ -1,7 +1,10 @@
-import {App, PluginSettingTab, Setting} from 'obsidian';
-import MyPlugin from '../../main';
+import {App, Modal, PluginSettingTab, Setting} from 'obsidian';
+import MyPlugin, {AppContext} from '../../main';
 import {WorkoutTrackerSettings} from './settings.types';
 import {arraymove} from "@/utils/arrayMove";
+import {createRoot} from "react-dom/client";
+import {Statistic} from "@/components/Statistic";
+import {StatisticModal} from "@/Statistic/Statistic";
 
 export const DEFAULT_SETTINGS: WorkoutTrackerSettings = {
 	workoutsFolder: 'Workouts',
@@ -33,7 +36,16 @@ export default class BaseSettingsTab extends PluginSettingTab {
 	display(): void {
 		const {containerEl} = this;
 
-		containerEl.empty()
+		containerEl.createEl(
+			'button',
+			{
+				text: 'Show statistic',
+			},
+		).onclick = () => {
+			new StatisticModal(this.app, this.plugin.settings).open()
+		}
+
+		containerEl.createEl('h2', {text: 'Main settings'});
 
 		new Setting(containerEl)
 			.setName('Folder for workouts')
@@ -45,7 +57,6 @@ export default class BaseSettingsTab extends PluginSettingTab {
 					this.plugin.saveSettings()
 				})
 			});
-
 
 		containerEl.createEl('h2', {text: 'Additional workout parameters'});
 

@@ -47,6 +47,12 @@ body .custom-select__control, body .custom-select__option, body .custom-select__
 	outline: none;
 }
 
+body .custom-select__menu-list{
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+}
+
 .add-exercise{
 	padding: 2em;
 	border: 1px solid var(--background-modifier-border);
