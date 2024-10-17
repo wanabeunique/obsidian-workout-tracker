@@ -31,6 +31,10 @@
 	margin-top: 3em;
 }
 
+.pointer{
+	cursor: pointer;
+}
+
 body .custom-select__control, body .custom-select__option, body .custom-select__menu{
 	-webkit-app-region: no-drag;
 	background: var(--background-modifier-form-field);
@@ -41,6 +45,11 @@ body .custom-select__control, body .custom-select__option, body .custom-select__
 	font-size: var(--font-ui-small);
 	border-radius: var(--input-radius);
 	outline: none;
+}
+
+.add-exercise{
+	padding: 2em;
+	border: 1px solid var(--background-modifier-border);
 }
 
 body .custom-select__single-value{

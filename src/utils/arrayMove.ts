@@ -2,11 +2,25 @@ export function arraymove<T>(
 	arr: T[],
 	fromIndex: number,
 	toIndex: number
-): void {
+) {
 	if (toIndex < 0 || toIndex === arr.length) {
-		return;
+		return [] as T[];
 	}
 	const element = arr[fromIndex];
 	arr[fromIndex] = arr[toIndex];
 	arr[toIndex] = element;
+}
+
+
+export function getArraymoved<T>( arr: T[],
+  fromIndex: number,
+  toIndex: number
+): T[] {
+  if (toIndex < 0 || toIndex >= arr.length) {
+    return arr;
+  }
+  const newArr = [...arr];
+  const [element] = newArr.splice(fromIndex, 1);
+  newArr.splice(toIndex, 0, element);
+  return newArr;
 }

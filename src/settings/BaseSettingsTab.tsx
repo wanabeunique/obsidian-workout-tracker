@@ -179,7 +179,7 @@ export default class BaseSettingsTab extends PluginSettingTab {
 		});
 
 
-		containerEl.createEl('h2', {text: 'Additional workout parameters'});
+		containerEl.createEl('h2', {text: 'Exercises'});
 
 		this.plugin.settings.exercises.forEach((exercise, index) => {
 			new Setting(containerEl)
