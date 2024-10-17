@@ -18,9 +18,7 @@ export default class WorkoutTrackerPlugin extends Plugin {
 		this.addSettingTab(new BaseSettingsTab(this.app, this));
 	}
 
-	onunload() {
-
-	}
+	onunload() {}
 
 	async loadSettings() {
 		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());

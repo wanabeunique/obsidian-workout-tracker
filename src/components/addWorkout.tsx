@@ -1,12 +1,13 @@
-import {useApp} from "../hooks/useApp";
-import {useEffect, useState} from "react";
-import {WorkoutTrackerSettings} from "../settings/settings.types";
+import {useApp} from "@/hooks/useApp";
+import {useState} from "react";
+import {WorkoutTrackerSettings} from "@/settings/settings.types";
 import Select from 'react-select';
 import {CircleX, ChevronUpCircle, ChevronDownCircle} from "lucide-react";
-import {getArraymoved} from "../utils/arrayMove";
-import {workoutToFile} from "../utils/workoutToFile";
+import {getArrayMoved} from "@/utils/arrayMove";
+import {workoutToFile} from "@/utils/workoutToFile";
+import {addWorkout} from "@/addWorkout/addWorkout";
 
-export const AddWorkout = ({settings, close}: { settings?: WorkoutTrackerSettings, close: any }) => {
+export const AddWorkout = ({settings, context}: { settings?: WorkoutTrackerSettings, context: addWorkout }) => {
 	const [isExerciseAdding, setExerciseAdding] = useState(false);
 	const [date, setDate] = useState(new Date().toISOString().split('T')[0])
 	const [exercises, setExercises] = useState<{
@@ -14,8 +15,6 @@ export const AddWorkout = ({settings, close}: { settings?: WorkoutTrackerSetting
 	}[]>([]);
 	const [formValues, setFormValues] = useState<{ [key: string]: string }>({});
 	const app = useApp();
-
-	useEffect(() => {console.log(date)}, [date])
 
 	function addExercise() {
 		setExercises(prevExercises => [...prevExercises, formValues]);
@@ -28,9 +27,10 @@ export const AddWorkout = ({settings, close}: { settings?: WorkoutTrackerSetting
 		}));
 	};
 
-	async function saveWorkout(){
-		await workoutToFile(app, exercises, settings?.workoutsFolder, date);
-		// close()
+	async function saveWorkout() {
+		if (!app || !settings?.workoutsFolder) return
+		await workoutToFile(app, exercises, settings.workoutsFolder, date);
+		context.close()
 	}
 
 	return (
@@ -39,7 +39,10 @@ export const AddWorkout = ({settings, close}: { settings?: WorkoutTrackerSetting
 			<input
 				type="date"
 				value={date}
-				onChange={(e) => {console.log(e); setDate(e.target.value)}}
+				onChange={(e) => {
+					console.log(e);
+					setDate(e.target.value)
+				}}
 			/>
 			<button onClick={() => setExerciseAdding(true)}>Add exercise</button>
 
@@ -81,12 +84,12 @@ export const AddWorkout = ({settings, close}: { settings?: WorkoutTrackerSetting
 						<ChevronUpCircle
 							className={"pointer"}
 							onClick={() => {
-								setExercises(getArraymoved(exercises, index, index - 1));
+								setExercises(getArrayMoved(exercises, index, index - 1));
 							}}/>
 						<ChevronDownCircle
 							className={"pointer"}
 							onClick={() => {
-								setExercises(getArraymoved(exercises, index, index + 1));
+								setExercises(getArrayMoved(exercises, index, index + 1));
 							}}/>
 					</div>
 
@@ -95,9 +98,7 @@ export const AddWorkout = ({settings, close}: { settings?: WorkoutTrackerSetting
 
 			{exercises.length > 0 && (
 				<button
-					onClick={() => {
-						saveWorkout()
-					}}
+					onClick={() => saveWorkout()}
 				>Save workout</button>
 			)}
 		</div>

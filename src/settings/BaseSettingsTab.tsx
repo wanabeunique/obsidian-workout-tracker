@@ -1,7 +1,7 @@
 import {App, PluginSettingTab, Setting} from 'obsidian';
 import MyPlugin from '../../main';
 import {WorkoutTrackerSettings} from './settings.types';
-import {arraymove} from "../utils/arrayMove";
+import {arraymove} from "@/utils/arrayMove";
 
 export const DEFAULT_SETTINGS: WorkoutTrackerSettings = {
 	workoutsFolder: 'Workouts',
@@ -49,7 +49,7 @@ export default class BaseSettingsTab extends PluginSettingTab {
 
 		containerEl.createEl('h2', {text: 'Additional workout parameters'});
 
-		this.plugin.settings.additionalExerciseParams.forEach((param, index) => {
+		this.plugin.settings.additionalExerciseParams.forEach((_, index) => {
 			new Setting(containerEl)
 				.addText(text => {
 					text.setValue(this.plugin.settings.additionalExerciseParams[index].name);
@@ -116,7 +116,7 @@ export default class BaseSettingsTab extends PluginSettingTab {
 
 		containerEl.createEl('h2', {text: 'Muscle groups'});
 
-		this.plugin.settings.muscleGroups.forEach((group, index) => {
+		this.plugin.settings.muscleGroups.forEach((_, index) => {
 			new Setting(containerEl)
 				.addText(text => {
 					text.setValue(this.plugin.settings.muscleGroups[index]);
@@ -181,7 +181,7 @@ export default class BaseSettingsTab extends PluginSettingTab {
 
 		containerEl.createEl('h2', {text: 'Exercises'});
 
-		this.plugin.settings.exercises.forEach((exercise, index) => {
+		this.plugin.settings.exercises.forEach((_, index) => {
 			new Setting(containerEl)
 				.addText(text => {
 					text.setValue(this.plugin.settings.exercises[index].name);

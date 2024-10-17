@@ -1,9 +1,9 @@
 import {App, Modal} from "obsidian";
 import {createRoot, Root} from "react-dom/client";
-import {AddWorkout} from "../components/addWorkout";
 import React from "react";
 import { AppContext } from "main";
-import {WorkoutTrackerSettings} from "../settings/settings.types";
+import {WorkoutTrackerSettings} from "@/settings/settings.types";
+import {AddWorkout} from "@/components/addWorkout";
 
 export class addWorkout extends Modal {
 	root: Root | null = null
@@ -19,7 +19,7 @@ export class addWorkout extends Modal {
 		this.root = createRoot(this.containerEl.children[1]);
 		this.root.render(
 			<AppContext.Provider value={this.app}>
-				<AddWorkout settings={this.settings} close={this.close}/>
+				<AddWorkout settings={this.settings} context={this}/>
 			</AppContext.Provider>
 		);
 	}
