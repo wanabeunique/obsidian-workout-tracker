@@ -3,6 +3,7 @@ import BaseSettingsTab, {DEFAULT_SETTINGS} from "./src/settings/BaseSettingsTab"
 import {addWorkout} from "./src/addWorkout/addWorkout";
 import {WorkoutTrackerSettings} from "./src/settings/settings.types";
 import React from "react";
+import {StatisticModal} from "@/Statistic/Statistic";
 
 export const AppContext = React.createContext<App | null>(null);
 export default class WorkoutTrackerPlugin extends Plugin {
@@ -15,10 +16,15 @@ export default class WorkoutTrackerPlugin extends Plugin {
 			new addWorkout(this.app, this.settings).open()
 		});
 
+		this.addRibbonIcon('chart-line', 'Statistic', () => {
+			new StatisticModal(this.app, this.settings).open()
+		});
+
 		this.addSettingTab(new BaseSettingsTab(this.app, this));
 	}
 
-	onunload() {}
+	onunload() {
+	}
 
 	async loadSettings() {
 		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());

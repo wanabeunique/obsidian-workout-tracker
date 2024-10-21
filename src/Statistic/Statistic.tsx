@@ -18,7 +18,7 @@ export class StatisticModal extends Modal {
 		this.root = createRoot(this.containerEl.children[1]);
 		this.root.render(
 			<AppContext.Provider value={this.app}>
-				<Statistic context={this}/>
+				<Statistic app={this.app} settings={this.settings}/>
 			</AppContext.Provider>
 		);
 	}

@@ -1,0 +1,11 @@
+/* node_modules/@uiw/react-heat-map/esm/style/index.css */
+svg.w-heatmap rect:hover {
+  stroke: var(--rhm-rect-hover-stroke, rgba(0, 0, 0, 0.14));
+  stroke-width: 1px;
+}
+svg.w-heatmap rect:active {
+  fill: #196127;
+  fill: var(--rhm-rect-active, #196127);
+  stroke-width: 0;
+}
+/*# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsibm9kZV9tb2R1bGVzL0B1aXcvcmVhY3QtaGVhdC1tYXAvZXNtL3N0eWxlL2luZGV4LmNzcyJdLAogICJzb3VyY2VzQ29udGVudCI6IFsic3ZnLnctaGVhdG1hcCByZWN0OmhvdmVyIHtcbiAgc3Ryb2tlOiB2YXIoLS1yaG0tcmVjdC1ob3Zlci1zdHJva2UsIHJnYmEoMCwgMCwgMCwgMC4xNCkpO1xuICBzdHJva2Utd2lkdGg6IDFweDtcbn1cbnN2Zy53LWhlYXRtYXAgcmVjdDphY3RpdmUge1xuICBmaWxsOiAjMTk2MTI3O1xuICBmaWxsOiB2YXIoLS1yaG0tcmVjdC1hY3RpdmUsICMxOTYxMjcpO1xuICBzdHJva2Utd2lkdGg6IDA7XG59XG4iXSwKICAibWFwcGluZ3MiOiAiO0FBQUE7QUFDRTtBQUNBO0FBQUE7QUFFRjtBQUNFO0FBQ0E7QUFDQTtBQUFBOyIsCiAgIm5hbWVzIjogW10KfQo= */

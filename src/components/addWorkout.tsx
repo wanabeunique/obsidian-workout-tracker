@@ -29,7 +29,7 @@ export const AddWorkout = ({settings, context}: { settings?: WorkoutTrackerSetti
 
 	async function saveWorkout() {
 		if (!app || !settings?.workoutsFolder) return
-		await workoutToFile(app, exercises, settings.workoutsFolder, date);
+		await workoutToFile(app, settings ,exercises, settings.workoutsFolder, date);
 		context.close()
 	}
 
@@ -40,7 +40,6 @@ export const AddWorkout = ({settings, context}: { settings?: WorkoutTrackerSetti
 				type="date"
 				value={date}
 				onChange={(e) => {
-					console.log(e);
 					setDate(e.target.value)
 				}}
 			/>

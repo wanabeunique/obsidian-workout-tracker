@@ -36,25 +36,19 @@ export default class BaseSettingsTab extends PluginSettingTab {
 	display(): void {
 		const {containerEl} = this;
 
-		containerEl.createEl(
-			'button',
-			{
-				text: 'Show statistic',
-			},
-		).onclick = () => {
-			new StatisticModal(this.app, this.plugin.settings).open()
-		}
+		containerEl.empty()
 
 		containerEl.createEl('h2', {text: 'Main settings'});
 
 		new Setting(containerEl)
 			.setName('Folder for workouts')
-			.setDesc('Folder where workouts are stored')
+			.setDesc('A path where to a folder where workouts are stored')
 			.addText(text => {
 				text.setValue(this.plugin.settings.workoutsFolder);
-				text.onChange((value) => {
+				text.onChange(async (value) => {
 					this.plugin.settings.workoutsFolder = value
-					this.plugin.saveSettings()
+					await this.plugin.saveSettings()
+					this.display()
 				})
 			});
 
@@ -64,48 +58,48 @@ export default class BaseSettingsTab extends PluginSettingTab {
 			new Setting(containerEl)
 				.addText(text => {
 					text.setValue(this.plugin.settings.additionalExerciseParams[index].name);
-					text.onChange((value) => {
+					text.onChange(async (value) => {
 						this.plugin.settings.additionalExerciseParams[index].name = value
-						this.plugin.saveSettings()
+						await this.plugin.saveSettings()
 					})
 				})
 				.addExtraButton((cb) => {
 					cb.setIcon("up-chevron-glyph")
 						.setTooltip("Move up")
-						.onClick(() => {
+						.onClick(async () => {
 							arraymove(
 								this.plugin.settings.additionalExerciseParams,
 								index,
 								index - 1
 							);
 							this.plugin.settings.additionalExerciseParams;
-							this.plugin.saveSettings()
+							await this.plugin.saveSettings()
 							this.display();
 						});
 				})
 				.addExtraButton((cb) => {
 					cb.setIcon("down-chevron-glyph")
 						.setTooltip("Move down")
-						.onClick(() => {
+						.onClick(async () => {
 							arraymove(
 								this.plugin.settings.additionalExerciseParams,
 								index,
 								index + 1
 							);
 							this.plugin.settings.additionalExerciseParams;
-							this.plugin.saveSettings()
+							await this.plugin.saveSettings()
 							this.display();
 						});
 				})
 				.addExtraButton((cb) => {
 					cb.setIcon("cross")
 						.setTooltip("Delete")
-						.onClick(() => {
+						.onClick(async () => {
 							this.plugin.settings.additionalExerciseParams.splice(
 								index,
 								1
 							);
-							this.plugin.saveSettings()
+							await this.plugin.saveSettings()
 							this.display();
 						});
 				});
@@ -115,12 +109,12 @@ export default class BaseSettingsTab extends PluginSettingTab {
 		new Setting(this.containerEl).addButton((cb) => {
 			cb.setButtonText("Add new parameter")
 				.setCta()
-				.onClick(() => {
+				.onClick(async () => {
 					this.plugin.settings.additionalExerciseParams.push({
 						name: '',
 						type: 'string'
 					});
-					this.plugin.saveSettings()
+					await this.plugin.saveSettings()
 					this.display()
 				});
 		});
@@ -131,49 +125,49 @@ export default class BaseSettingsTab extends PluginSettingTab {
 			new Setting(containerEl)
 				.addText(text => {
 					text.setValue(this.plugin.settings.muscleGroups[index]);
-					text.onChange((value) => {
+					text.onChange(async (value) => {
 						this.plugin.settings.muscleGroups[index] = value
-						this.plugin.saveSettings()
+						await this.plugin.saveSettings()
 					})
 				})
 				.addExtraButton((cb) => {
 					cb.setIcon("up-chevron-glyph")
 						.setTooltip("Move up")
-						.onClick(() => {
+						.onClick(async () => {
 							arraymove(
 								this.plugin.settings.muscleGroups,
 								index,
 								index - 1
 							);
 							this.plugin.settings.muscleGroups;
-							this.plugin.saveSettings()
+							await this.plugin.saveSettings()
 							this.display();
 						});
 				})
 				.addExtraButton((cb) => {
 					cb.setIcon("down-chevron-glyph")
 						.setTooltip("Move down")
-						.onClick(() => {
+						.onClick(async () => {
 							arraymove(
 								this.plugin.settings.muscleGroups,
 								index,
 								index + 1
 							);
 							this.plugin.settings.muscleGroups;
-							this.plugin.saveSettings()
+							await this.plugin.saveSettings()
 							this.display();
 						});
 				})
 				.addExtraButton((cb) => {
 					cb.setIcon("cross")
 						.setTooltip("Delete")
-						.onClick(() => {
+						.onClick(async () => {
 							this.plugin.settings.muscleGroups.splice(
 								index,
 								1
 							);
-							this.plugin.saveSettings()
-							this.display();
+							await this.plugin.saveSettings()
+							this.display()
 						});
 				});
 
@@ -182,9 +176,9 @@ export default class BaseSettingsTab extends PluginSettingTab {
 		new Setting(this.containerEl).addButton((cb) => {
 			cb.setButtonText("Add new muscle group")
 				.setCta()
-				.onClick(() => {
+				.onClick(async () => {
 					this.plugin.settings.muscleGroups.push("")
-					this.plugin.saveSettings()
+					await this.plugin.saveSettings()
 					this.display()
 				});
 		});
@@ -196,17 +190,18 @@ export default class BaseSettingsTab extends PluginSettingTab {
 			new Setting(containerEl)
 				.addText(text => {
 					text.setValue(this.plugin.settings.exercises[index].name);
-					text.onChange((value) => {
+					text.onChange(async (value) => {
 						this.plugin.settings.exercises[index].name = value
-						this.plugin.saveSettings()
+						await this.plugin.saveSettings()
 					})
 				})
 				.addDropdown(dropdown => {
 					this.plugin.settings.muscleGroups.forEach((group) => {
 						dropdown.addOption(group, group)
-						dropdown.onChange((value) => {
+						dropdown.onChange(async (value) => {
 							this.plugin.settings.exercises[index].muscleGroup = value
-							this.plugin.saveSettings()
+							await this.plugin.saveSettings()
+							this.display()
 						})
 					})
 					dropdown.setValue(this.plugin.settings.exercises[index].muscleGroup)
@@ -214,40 +209,40 @@ export default class BaseSettingsTab extends PluginSettingTab {
 				.addExtraButton((cb) => {
 					cb.setIcon("up-chevron-glyph")
 						.setTooltip("Move up")
-						.onClick(() => {
+						.onClick(async () => {
 							arraymove(
 								this.plugin.settings.exercises,
 								index,
 								index - 1
 							);
 							this.plugin.settings.exercises;
-							this.plugin.saveSettings()
+							await this.plugin.saveSettings()
 							this.display();
 						});
 				})
 				.addExtraButton((cb) => {
 					cb.setIcon("down-chevron-glyph")
 						.setTooltip("Move down")
-						.onClick(() => {
+						.onClick(async () => {
 							arraymove(
 								this.plugin.settings.exercises,
 								index,
 								index + 1
 							);
 							this.plugin.settings.exercises;
-							this.plugin.saveSettings()
+							await this.plugin.saveSettings()
 							this.display();
 						});
 				})
 				.addExtraButton((cb) => {
 					cb.setIcon("cross")
 						.setTooltip("Delete")
-						.onClick(() => {
+						.onClick(async () => {
 							this.plugin.settings.exercises.splice(
 								index,
 								1
 							);
-							this.plugin.saveSettings()
+							await this.plugin.saveSettings()
 							this.display();
 						});
 				});
@@ -257,12 +252,12 @@ export default class BaseSettingsTab extends PluginSettingTab {
 		new Setting(this.containerEl).addButton((cb) => {
 			cb.setButtonText("Add new exercise")
 				.setCta()
-				.onClick(() => {
+				.onClick(async () => {
 					this.plugin.settings.exercises.push({
 						name: '',
 						muscleGroup: ''
 					})
-					this.plugin.saveSettings()
+					await this.plugin.saveSettings()
 					this.display()
 				});
 		});
