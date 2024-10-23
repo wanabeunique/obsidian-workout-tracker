@@ -1,5 +1,5 @@
 import {App} from "obsidian";
-import {WorkoutTrackerSettings} from "@/settings/settings.types";
+import {WorkoutTrackerSettings} from "@/types/Settings";
 
 export function getWorkoutsDate(app: App, settings: WorkoutTrackerSettings){
 	const allWorkouts = app.vault.getFiles().filter(file => file.path.includes(settings.workoutsFolder));

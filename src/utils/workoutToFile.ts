@@ -1,6 +1,6 @@
-import {App, FrontMatterCache, TFile} from "obsidian";
+import {App, TFile} from "obsidian";
 import {getSortedExercises} from "@/utils/getSortedExercises";
-import {WorkoutTrackerSettings} from "@/settings/settings.types";
+import {WorkoutTrackerSettings} from "@/types/Settings";
 
 export async function workoutToFile(app: App, settings: WorkoutTrackerSettings, exercises: {
 	[key: string]: string
@@ -17,9 +17,9 @@ export async function workoutToFile(app: App, settings: WorkoutTrackerSettings, 
 	for (const index in exercises) {
 		const exercise = exercises[index];
 		const numericIndex = Number(index);
-		const existingExercisesInDay = (sortedExercises as {[key: string]: FrontMatterCache[]})[exercise.selectedExercise];
+		const existingExercisesInDay = sortedExercises[exercise.selectedExercise];
 
-		let totalIndex =  existingExercisesInDay ? numericIndex + existingExercisesInDay.length + 1 : numericIndex + 1
+		let totalIndex =  existingExercisesInDay && Array.isArray(existingExercisesInDay) ? numericIndex + existingExercisesInDay.length + 1 : numericIndex + 1
 
 		const fileName = `${workoutDir}/${date}/${exercise.selectedExercise}-${totalIndex}.md`;
 

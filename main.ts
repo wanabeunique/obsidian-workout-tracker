@@ -1,7 +1,7 @@
 import {App, Plugin} from 'obsidian';
-import BaseSettingsTab, {DEFAULT_SETTINGS} from "./src/settings/BaseSettingsTab";
-import {addWorkout} from "./src/addWorkout/addWorkout";
-import {WorkoutTrackerSettings} from "./src/settings/settings.types";
+import BaseSettingsTab, {DEFAULT_SETTINGS} from "@/components/BaseSettingsTab";
+import {addWorkout} from "@/addWorkout/addWorkout";
+import {WorkoutTrackerSettings} from "@/types/Settings";
 import React from "react";
 import {StatisticModal} from "@/Statistic/Statistic";
 

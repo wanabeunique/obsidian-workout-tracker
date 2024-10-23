@@ -78,6 +78,17 @@ body .custom-select__single-value{
 .custom-tabs{
 	list-style: none;
 	padding: 0;
+	border-bottom: 1px solid var(--interactive-normal);
+}
+
+.custom-tabs .react-tabs__tab{
+	display: inline-block;
+	padding: 1em;
+	cursor: pointer;
+}
+
+.custom-tabs .react-tabs__tab--selected {
+	border-bottom: 1px solid var(--color-accent);
 }
 
 .box{

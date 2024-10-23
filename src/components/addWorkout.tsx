@@ -1,6 +1,6 @@
 import {useApp} from "@/hooks/useApp";
 import {useState} from "react";
-import {WorkoutTrackerSettings} from "@/settings/settings.types";
+import {WorkoutTrackerSettings} from "@/types/Settings";
 import Select from 'react-select';
 import {CircleX, ChevronUpCircle, ChevronDownCircle} from "lucide-react";
 import {getArrayMoved} from "@/utils/arrayMove";

@@ -2,7 +2,7 @@ import {App, Modal} from "obsidian";
 import {createRoot, Root} from "react-dom/client";
 import React from "react";
 import { AppContext } from "main";
-import {WorkoutTrackerSettings} from "@/settings/settings.types";
+import {WorkoutTrackerSettings} from "@/types/Settings";
 import {AddWorkout} from "@/components/addWorkout";
 
 export class addWorkout extends Modal {

@@ -1,50 +1,54 @@
-import { App, FrontMatterCache } from "obsidian";
-import { WorkoutTrackerSettings } from "@/settings/settings.types";
+import {App, FrontMatterCache} from "obsidian";
+import {WorkoutTrackerSettings} from "@/types/Settings";
+
+type sortedExerciseType<T> = T extends false
+	? Record<string, Record<string, FrontMatterCache[]>>
+	: Record<string, FrontMatterCache[]>;
+
 
 export function getSortedExercises(app: App, settings: WorkoutTrackerSettings, date: string | Date | null = null, removeMuscleKeys = false) {
-  const folderPath = date ? `${settings.workoutsFolder}/${date}` : settings.workoutsFolder;
-  const allExercise = app.vault
-    .getFiles()
-    .filter((f) => f.path.includes(folderPath));
+	const folderPath = date ? `${settings.workoutsFolder}/${date}` : settings.workoutsFolder;
+	const allExercise = app.vault
+		.getFiles()
+		.filter((f) => f.path.includes(folderPath));
 
-  let sortedExercises: {
-    [key: string]: string[] | { [key: string]: string[] }
-  } = {};
+	let sortedExercises: sortedExerciseType<typeof removeMuscleKeys> = {};
 
-  const exercises = allExercise.map((exercise) => {
-    return app.metadataCache.getFileCache(exercise)?.frontmatter;
-  });
+	const exercises = allExercise.map((exercise) => {
+		return app.metadataCache.getFileCache(exercise)?.frontmatter;
+	});
 
-  const allExercises = settings.exercises;
+	const allExercises = settings.exercises;
 
-  exercises.forEach((exercise) => {
-    if (!exercise) return;
-    if (!removeMuscleKeys) {
-      if (!sortedExercises[getMuscleGroupByExercise(exercise.exercise, allExercises)]) {
-        sortedExercises[getMuscleGroupByExercise(exercise.exercise, allExercises)] = {};
-      }
-      if (!(sortedExercises[getMuscleGroupByExercise(exercise.exercise, allExercises)] as { [key: string]: FrontMatterCache[] })[exercise.exercise]) {
-        (sortedExercises[getMuscleGroupByExercise(exercise.exercise, allExercises)] as { [key: string]: FrontMatterCache[] })[exercise.exercise] = [];
-      }
+	exercises.forEach((frontmatter) => {
+		if (!frontmatter) return;
+		const currentExercise = frontmatter.exercise as string
+		const muscleGroup = getMuscleGroupByExercise(currentExercise, allExercises)
+		if (!removeMuscleKeys) {
+			if (!sortedExercises[muscleGroup]) {
+				(sortedExercises[muscleGroup]) = {};
+			}
 
-      (sortedExercises[getMuscleGroupByExercise(exercise.exercise, allExercises)] as { [key: string]: FrontMatterCache[] })[exercise.exercise].push(exercise);
-    } else {
-      if (!sortedExercises[exercise.exercise]) {
-        sortedExercises[exercise.exercise] = [];
-      }
+			if (!(sortedExercises[muscleGroup] as Record<string, FrontMatterCache[]>)[currentExercise]) {
+				(sortedExercises[muscleGroup] as Record<string, FrontMatterCache[]>)[currentExercise] = [];
+			}
 
-      (sortedExercises[exercise.exercise] as FrontMatterCache[]).push(exercise);
-    }
-  });
+			(sortedExercises[muscleGroup] as Record<string, FrontMatterCache[]>)[currentExercise].push(frontmatter);
+		} else {
+			if (!sortedExercises[currentExercise]) sortedExercises[currentExercise] = [];
 
-  return sortedExercises;
+			(sortedExercises[currentExercise] as FrontMatterCache[]).push(frontmatter);
+		}
+	});
+
+	return sortedExercises;
 }
 
 function getMuscleGroupByExercise(exercise: string, muscleGroups: WorkoutTrackerSettings["exercises"]): string {
-  for (const muscleGroup of muscleGroups) {
-    if (muscleGroup.name === exercise) {
-      return muscleGroup.muscleGroup;
-    }
-  }
-  return 'Other';
+	for (const muscleGroup of muscleGroups) {
+		if (muscleGroup.name === exercise) {
+			return muscleGroup.muscleGroup;
+		}
+	}
+	return 'Other';
 }

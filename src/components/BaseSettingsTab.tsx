@@ -1,10 +1,7 @@
-import {App, Modal, PluginSettingTab, Setting} from 'obsidian';
-import MyPlugin, {AppContext} from '../../main';
-import {WorkoutTrackerSettings} from './settings.types';
+import {App, PluginSettingTab, Setting} from 'obsidian';
+import MyPlugin from '../../main';
+import {WorkoutTrackerSettings} from '../types/Settings';
 import {arraymove} from "@/utils/arrayMove";
-import {createRoot} from "react-dom/client";
-import {Statistic} from "@/components/Statistic";
-import {StatisticModal} from "@/Statistic/Statistic";
 
 export const DEFAULT_SETTINGS: WorkoutTrackerSettings = {
 	workoutsFolder: 'Workouts',

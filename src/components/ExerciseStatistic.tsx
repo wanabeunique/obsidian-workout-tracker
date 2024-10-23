@@ -3,8 +3,14 @@ import {ApexOptions} from "apexcharts";
 import {getSortedExercises} from "@/utils/getSortedExercises";
 import Select from "react-select";
 import Chart from "react-apexcharts";
-import {App} from "obsidian";
-import {WorkoutTrackerSettings} from "@/settings/settings.types";
+import {App, FrontMatterCache} from "obsidian";
+import {WorkoutTrackerSettings} from "@/types/Settings";
+
+interface exerciseParam {
+	date: string,
+
+	[key: string]: string
+}
 
 export const ExerciseStatistic = ({app, settings}: { app: App, settings: WorkoutTrackerSettings }) => {
 
@@ -40,15 +46,30 @@ export const ExerciseStatistic = ({app, settings}: { app: App, settings: Workout
 
 	useEffect(() => {
 		if (selectedMuscleGroup && selectedExercise && selectedParam) {
-			if (!allExercises[selectedMuscleGroup][selectedExercise]) return
-			const exercise = allExercises[selectedMuscleGroup][selectedExercise].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
-			setSeries(() => [
-				{
-					name: selectedParam,
-					data: exercise.map((ex) => ex[selectedParam])
+			const exercisesForMuscleGroup = allExercises[selectedMuscleGroup] as Record<string, FrontMatterCache[]>;
+
+			if (!exercisesForMuscleGroup[selectedExercise]) return
+
+			const exercise = exercisesForMuscleGroup[selectedExercise]
+				.sort((a: exerciseParam, b: exerciseParam) => new Date(a.date).getTime() - new Date(b.date).getTime())
+
+			let resultSeries: number[] = []
+			let resultDate: string[] = []
+
+			exercise.forEach((ex: Record<string, string>) => {
+					const numberParam = parseFloat(ex[selectedParam])
+					if (!isNaN(numberParam)) {
+						resultSeries.push(numberParam)
+						resultDate.push(ex.date)
+					}
 				}
-			])
-			setCategories(exercise.map((ex) => ex.date))
+			)
+
+			setSeries([{
+				name: selectedParam,
+				data: resultSeries
+			}])
+			setCategories(resultDate)
 		}
 	}, [selectedMuscleGroup, selectedExercise, selectedParam])
 
@@ -63,7 +84,7 @@ export const ExerciseStatistic = ({app, settings}: { app: App, settings: Workout
 				categories: categories,
 			}
 		})
-	}, [selectedExercise, selectedMuscleGroup, selectedParam]);
+	}, [selectedExercise, selectedMuscleGroup, selectedParam, categories]);
 
 	useEffect(() => {
 		setSelectedExercise(null)
@@ -71,9 +92,6 @@ export const ExerciseStatistic = ({app, settings}: { app: App, settings: Workout
 
 	return (
 		<div className={"flex-col gap-1 stats"}>
-			<div>
-				<p className={'m0'}>Choose muscle group, exercise, parameter for comparison</p>
-			</div>
 			<div>
 				<p>Muscle group: </p>
 				<Select
