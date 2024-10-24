@@ -1,6 +1,6 @@
 import {App, PluginSettingTab, Setting} from 'obsidian';
 import MyPlugin from '../../main';
-import {WorkoutTrackerSettings} from '../types/Settings';
+import {WorkoutTrackerSettings} from '@/types/Settings';
 import {arraymove} from "@/utils/arrayMove";
 
 export const DEFAULT_SETTINGS: WorkoutTrackerSettings = {
