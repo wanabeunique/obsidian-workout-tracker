@@ -1,30 +1,20 @@
-#Obsidian Workout Tracker
+# Obsidian Workout Tracker
 Obsidian Workout Tracker is a plugin for Obsidian that helps you organize and track your workouts within your notes. With this plugin, you can create workouts, log exercises, visualize your workout data with heatmaps, and track your progress over time.
 
-Features
-Create Workouts: Add muscle groups and exercises to build your workout routines.
-Track Progress: View detailed statistics for each exercise, including total repetitions, sets, and more.
-Heatmap Visualization: Visualize your workout intensity over time with a built-in heatmap.
-Exercise History: Keep track of your exercise performance with a comprehensive exercise log.
-Installation
-Open Obsidian and go to the settings panel.
-Navigate to the "Community Plugins" section.
-Search for obsidian-workout-tracker.
-Install and enable the plugin.
-Configure the plugin settings as needed.
-How to Use
-1. Add Muscle Groups and Exercises
-   Before creating a workout, you'll need to define muscle groups and exercises. Navigate to the plugin menu, and under the "Muscle Groups" section, you can add the primary muscle groups you'll be working on. Once you've added muscle groups, define exercises within those groups.
+## How to Use
 
-2. Create a Workout
-   Go to the "Workouts" tab and select "Create New Workout".
-   Add exercises from your pre-defined list and customize sets, repetitions, or time-based activities.
-   Save your workout to log future progress.
-3. Track Progress
-   Each workout you complete is logged, and you can view stats for each exercise over time. This helps you understand your improvement in terms of strength and endurance.
+1. #### Add Muscle Groups and Exercises
+- Go to the plugin settings.
+- In the Muscle Groups section, create the muscle groups .
+- Once muscle groups are set, define the exercises for each group.
+- You can specify additional exercise parameters such as weight, sets, repetitions, and more.
+2. #### Create a Workout
+- After defining your muscle groups and exercises, you can create a workout.
+- Select exercises from your predefined list and add them to your workout routine.
+  Customize parameters for each exercise as needed (e.g., number of sets, repetitions, weight).
+3. #### View Heatmap and Statistics
+Use the Heatmap to visualize your workout consistency and intensity over time.
+Track your progress for each exercise with detailed statistics, including the custom parameters you’ve defined.
 
-4. View Heatmap
-   The Heatmap feature gives you a quick overview of your workout frequency and intensity. Use this to gauge your consistency and track high-intensity periods.
-
-Contributing
+## Contributing
 If you'd like to contribute or report issues, please feel free to create an issue or pull request on the GitHub repository. Contributions are always welcome!
