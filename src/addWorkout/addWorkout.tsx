@@ -3,7 +3,7 @@ import {createRoot, Root} from "react-dom/client";
 import React from "react";
 import { AppContext } from "main";
 import {WorkoutTrackerSettings} from "@/types/Settings";
-import {AddWorkout} from "@/components/addWorkout";
+import {AddWorkout} from "@/components/AddWorkout";
 
 export class addWorkout extends Modal {
 	root: Root | null = null
