@@ -2,7 +2,7 @@ import {WorkoutTrackerSettings} from "@/types/Settings";
 import {Statistic} from "@/components/Statistic";
 import {App, Modal} from "obsidian";
 import {createRoot, Root} from "react-dom/client";
-import { AppContext } from "main";
+import { AppContext } from "../../main";
 
 export class StatisticModal extends Modal {
 	root: Root | null = null

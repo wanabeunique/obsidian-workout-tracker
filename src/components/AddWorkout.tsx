@@ -5,7 +5,7 @@ import Select from 'react-select';
 import {CircleX, ChevronUpCircle, ChevronDownCircle} from "lucide-react";
 import {getArrayMoved} from "@/utils/arrayMove";
 import {workoutToFile} from "@/utils/workoutToFile";
-import {addWorkout} from "@/addWorkout/addWorkout";
+import {addWorkout} from "@/screens/addWorkout";
 
 export const AddWorkout = ({settings, context}: { settings?: WorkoutTrackerSettings, context: addWorkout }) => {
 	const [isExerciseAdding, setExerciseAdding] = useState(false);

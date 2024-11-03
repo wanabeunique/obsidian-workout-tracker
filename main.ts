@@ -1,9 +1,9 @@
 import {App, Plugin} from 'obsidian';
 import BaseSettingsTab, {DEFAULT_SETTINGS} from "@/components/BaseSettingsTab";
-import {addWorkout} from "@/addWorkout/addWorkout";
+import {addWorkout} from "@/screens/addWorkout";
 import {WorkoutTrackerSettings} from "@/types/Settings";
 import React from "react";
-import {StatisticModal} from "@/Statistic/Statistic";
+import {StatisticModal} from "@/screens/Statistic";
 
 export const AppContext = React.createContext<App | null>(null);
 export default class WorkoutTrackerPlugin extends Plugin {
