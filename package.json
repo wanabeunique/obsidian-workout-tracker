@@ -4,6 +4,7 @@
 	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
 	"main": "main.js",
 	"scripts": {
+		"test": "vitest",
 		"dev": "node esbuild.config.mjs",
 		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
 		"version": "node version-bump.mjs && git add manifest.json versions.json"
@@ -12,7 +13,8 @@
 	"author": "",
 	"license": "MIT",
 	"devDependencies": {
-		"@types/node": "^16.11.6",
+		"@testing-library/dom": "^10.4.0",
+		"@types/node": "^22.8.6",
 		"@types/react": "^18.3.11",
 		"@types/react-dom": "^18.3.1",
 		"@typescript-eslint/eslint-plugin": "5.29.0",
@@ -22,7 +24,8 @@
 		"obsidian": "latest",
 		"tailwindcss": "^3.4.13",
 		"tslib": "2.4.0",
-		"typescript": "4.7.4"
+		"typescript": "4.7.4",
+		"vitest": "^2.1.4"
 	},
 	"dependencies": {
 		"@uiw/react-heat-map": "^2.2.2",
