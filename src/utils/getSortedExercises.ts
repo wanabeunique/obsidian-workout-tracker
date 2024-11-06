@@ -1,4 +1,4 @@
-import {App, FrontMatterCache} from "obsidian";
+import {App, FrontMatterCache, normalizePath} from "obsidian";
 import {WorkoutTrackerSettings} from "@/types/Settings";
 
 type sortedExerciseType<T> = T extends false
@@ -7,7 +7,7 @@ type sortedExerciseType<T> = T extends false
 
 
 export function getSortedExercises(app: App, settings: WorkoutTrackerSettings, date: string | Date | null = null, removeMuscleKeys = false) {
-	const folderPath = date ? `${settings.workoutsFolder}/${date}` : settings.workoutsFolder;
+	const folderPath = date ? normalizePath(`${settings.workoutsFolder}/${date}`) : normalizePath(settings.workoutsFolder);
 	const allExercise = app.vault
 		.getFiles()
 		.filter((f) => f.path.includes(folderPath));

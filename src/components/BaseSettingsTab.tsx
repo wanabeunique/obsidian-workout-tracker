@@ -35,8 +35,6 @@ export default class BaseSettingsTab extends PluginSettingTab {
 
 		containerEl.empty()
 
-		containerEl.createEl('h2', {text: 'Main settings'});
-
 		new Setting(containerEl)
 			.setName('Folder for workouts')
 			.setDesc('A path where to a folder where workouts are stored')
@@ -49,7 +47,7 @@ export default class BaseSettingsTab extends PluginSettingTab {
 				})
 			});
 
-		containerEl.createEl('h2', {text: 'Additional workout parameters'});
+		new Setting(containerEl).setName('Additional workout parameters').setHeading()
 
 		this.plugin.settings.additionalExerciseParams.forEach((_, index) => {
 			new Setting(containerEl)
@@ -116,7 +114,7 @@ export default class BaseSettingsTab extends PluginSettingTab {
 				});
 		});
 
-		containerEl.createEl('h2', {text: 'Muscle groups'});
+		new Setting(containerEl).setName('Muscle groups').setHeading()
 
 		this.plugin.settings.muscleGroups.forEach((_, index) => {
 			new Setting(containerEl)
@@ -180,8 +178,7 @@ export default class BaseSettingsTab extends PluginSettingTab {
 				});
 		});
 
-
-		containerEl.createEl('h2', {text: 'Exercises'});
+		new Setting(containerEl).setName('Exercises').setHeading()
 
 		this.plugin.settings.exercises.forEach((_, index) => {
 			new Setting(containerEl)

@@ -3,7 +3,7 @@
 	"name": "Workout Tracker",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "A plugin tracks workout progress",
+	"description": "Log workouts, track progress, and view exercise statistic.",
 	"author": "wanabeunique",
 	"authorUrl": "https://github.com/wanabeunique",
 	"isDesktopOnly": false

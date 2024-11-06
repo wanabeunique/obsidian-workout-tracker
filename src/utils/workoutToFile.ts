@@ -1,4 +1,4 @@
-import {App, TFile} from "obsidian";
+import {App, normalizePath, TFile} from "obsidian";
 import {getSortedExercises} from "@/utils/getSortedExercises";
 import {WorkoutTrackerSettings} from "@/types/Settings";
 
@@ -21,7 +21,7 @@ export async function workoutToFile(app: App, settings: WorkoutTrackerSettings, 
 
 		let totalIndex =  existingExercisesInDay && Array.isArray(existingExercisesInDay) ? numericIndex + existingExercisesInDay.length + 1 : numericIndex + 1
 
-		const fileName = `${workoutDir}/${date}/${exercise.selectedExercise}-${totalIndex}.md`;
+		const fileName = normalizePath(`${workoutDir}/${date}/${exercise.selectedExercise}-${totalIndex}.md`);
 
 		const file = app.vault.getAbstractFileByPath(fileName);
 

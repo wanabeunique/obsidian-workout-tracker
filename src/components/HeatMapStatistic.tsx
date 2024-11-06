@@ -30,7 +30,6 @@ export function HeatMapStatistic({app, settings}: { app: App, settings: WorkoutT
  const [selectedExercises, setSelectedExercises] = useState<Record<string, FrontMatterCache[]> | null>(null)
 
  useEffect(() => {
-  console.log(selected)
   if (!selected) return
   const formattedDate = selected.replace(/\//g, '-');
   const sortedExercises = getSortedExercises(app, settings, formattedDate, true)
@@ -44,7 +43,7 @@ export function HeatMapStatistic({app, settings}: { app: App, settings: WorkoutT
  return (
   <div>
    <div className={'flex gap-1 align-center'}>
-    <label htmlFor="year-select">Select Year: </label>
+    <label htmlFor="year-select">Select year: </label>
     <div className="select-wrapper">
      <select id="year-select" value={selectedYear} onChange={handleYearChange}>
       {Array.from({ length: 10 }, (_, i) => currentYear - i).map(year => (

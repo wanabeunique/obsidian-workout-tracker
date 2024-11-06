@@ -1,5 +1,5 @@
-# Obsidian Workout Tracker
-Obsidian Workout Tracker is a plugin for Obsidian that helps you organize and track your workouts within your notes. With this plugin, you can create workouts, log exercises, visualize your workout data with heatmaps, and track your progress over time.
+# Workout Tracker
+Log your workouts effortlessly, track your progress over time, and view detailed statistics for each exercise. Keep all your fitness data organized and accessible directly within Obsidian.
 
 ## How to Use
 
